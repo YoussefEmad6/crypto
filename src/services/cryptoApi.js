@@ -13,10 +13,7 @@ export const cryptoApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_CRYPTO_API_URL }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: (count) =>
-        createRequest(
-          `/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=${count}&offset=0`
-        ),
+      query: (count) => createRequest(`/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=${count}&offset=0`),
     }),
 
     getCryptoDetails: builder.query({
