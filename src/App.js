@@ -10,18 +10,31 @@ import {
   CryptoDetails,
   Navbar,
 } from "./components";
+import axios from "axios";
+
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '28bc40dbaemsheee61f352d0cb1cp1c568ejsndfbc4d6a0724',
-		'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
-	}
+  method: 'GET',
+  url: 'https://coinranking1.p.rapidapi.com/coins',
+  params: {
+    referenceCurrencyUuid: 'yhjMzLPhuIDl',
+    timePeriod: '24h',
+    'tiers[0]': '1',
+    orderBy: 'marketCap',
+    orderDirection: 'desc',
+    limit: '50',
+    offset: '0'
+  },
+  headers: {
+    'X-RapidAPI-Key': '28bc40dbaemsheee61f352d0cb1cp1c568ejsndfbc4d6a0724',
+    'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+  }
 };
 
-fetch('https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
+axios.request(options).then(function (response) {
+	console.log(response.data);
+}).catch(function (error) {
+	console.error(error);
+});
 
 function App() {
   return (
